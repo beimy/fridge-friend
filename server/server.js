@@ -1,7 +1,10 @@
+// Connects to the mongoose database
+const mongoose = require('mongoose');
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth');
 
+// imports the schema files
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -41,4 +44,3 @@ db.once('open', () => {
 });
 
 startApolloServer(typeDefs, resolvers);
-
