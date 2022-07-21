@@ -5,25 +5,12 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
+    favoriteFood: [Food]
   }
 
-  type Thought {
-    _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
-
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
+  type Food {
+    foodId: ID
+    categories: String
   }
 
   type Auth {
