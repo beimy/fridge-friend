@@ -1,17 +1,10 @@
 const faker = require('faker');
 
 const db = require('../config/connection');
-<<<<<<< Updated upstream
-const { User } = require('../models');
-
-db.once('open', async () => {
-  
-=======
 const { Recipe, User } = require('../models');
 
 db.once('open', async () => {
   await Recipe.deleteMany({});
->>>>>>> Stashed changes
   await User.deleteMany({});
 
   // create user data
@@ -27,10 +20,6 @@ db.once('open', async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   console.log('all done!');
   process.exit(0);
 });

@@ -5,15 +5,6 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-<<<<<<< Updated upstream
-    favoriteFood: [Food]
-  }
-
-  type Food {
-    foodId: ID
-    categories: String
-=======
->>>>>>> Stashed changes
   }
 
   type Auth {

@@ -19,11 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 5
-<<<<<<< Updated upstream
-    },
-=======
     }
->>>>>>> Stashed changes
   },
   {
     toJSON: {
@@ -47,11 +43,7 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-<<<<<<< Updated upstream
 // userSchema.virtual('favoriteRecipe').get(function() {
-=======
-// userSchema.virtual('recipeCount').get(function() {
->>>>>>> Stashed changes
 //   return this.recipe.length;
 // });
 
