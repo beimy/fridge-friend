@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import LoginModal from "../components/LoginModal";
 
 const app_id = process.env.REACT_APP_EDAMAM_APP_ID;
 const api_key = process.env.REACT_APP_EDAMAM_API_KEY;
@@ -47,6 +48,7 @@ const Home = () => {
                     <button type="button" onClick={sendReq}>Send Request</button>
                 </form>
                 
+                <LoginModal />
                 
             </div>
         </main>
