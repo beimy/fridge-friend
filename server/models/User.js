@@ -43,6 +43,7 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
+// This is where the favorited recipes are to be stored
 // userSchema.virtual('favoriteRecipe').get(function() {
 //   return this.recipe.length;
 // });
