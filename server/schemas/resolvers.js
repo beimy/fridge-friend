@@ -1,9 +1,14 @@
+<<<<<<< Updated upstream
 const { User, Food } = require('../models');
+=======
+const { User, Recipe } = require('../models');
+>>>>>>> Stashed changes
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+<<<<<<< Updated upstream
         foods: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Food.find(params).sort({ createdAt: -1 });
@@ -18,21 +23,34 @@ const resolvers = {
                 .select('__v -password')
                 .populate('friends')
                 .populate('foods');
+=======
+        users: async () => {
+            return User.find()
+                .select('__v -password');
+>>>>>>> Stashed changes
         },
 
         user: async (parent, { username }) => {
             return User.findOne({ username })
+<<<<<<< Updated upstream
                 .select('__v -password')
                 .populate('friends')
                 .populate('foods');
+=======
+                .select('__v -password');
+>>>>>>> Stashed changes
         },
 
         me: async (parent, args, context) => {
             if(context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
+<<<<<<< Updated upstream
                     .select('-__v -password')
                     .populate('foods')
                     .populate('friends');
+=======
+                    .select('-__v -password');
+>>>>>>> Stashed changes
 
                 return userData;
             }
@@ -64,6 +82,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+<<<<<<< Updated upstream
         addFood: async (parent, args, context) => {
             if (context.user) {
                 const food = await Food.create({ ...args, username: context.user.username });
@@ -105,6 +124,8 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         }
+=======
+>>>>>>> Stashed changes
     }
 };
 
