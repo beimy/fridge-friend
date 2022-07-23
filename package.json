@@ -22,9 +22,5 @@
   "homepage": "https://github.com/beimy/group-project#readme",
   "devDependencies": {
     "concurrently": "^7.3.0"
-  },
-  "dependencies": {
-    "apollo-server-express": "^3.10.0",
-    "graphql": "^16.5.0"
   }
 }
