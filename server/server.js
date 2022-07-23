@@ -1,7 +1,9 @@
-// Connects to the mongoose database
+// Connects to the mongoose and express packages
 const mongoose = require("mongoose");
 const express = require("express");
+// destructures the ApolloServer package
 const { ApolloServer } = require("apollo-server-express");
+// allows the use of middleware
 const { authMiddleware } = require("./utils/auth");
 
 // imports the schema files
@@ -10,6 +12,7 @@ const db = require("./config/connection");
 
 const path = require("path");
 
+// sets up the port for testing Apollo locally on port 3001
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
@@ -22,6 +25,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// This is for Apollo when used on a server
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "../client/build")));
 // }
@@ -30,6 +34,7 @@ app.use(express.json());
 //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // });
 
+// Starts the ApolloServer connection
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
