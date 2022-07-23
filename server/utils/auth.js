@@ -1,6 +1,9 @@
+// connects to json web token
 const jwt = require('jsonwebtoken');
 
+// the secret value used to create the token
 const secret = 'mysecret';
+// sets the amount of time the token is useable
 const expiration = '2h';
 
 module.exports = {
