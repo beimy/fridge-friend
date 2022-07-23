@@ -1,5 +1,7 @@
+// creates the GraphQL schema for the server
 const { gql } = require('apollo-server-express');
 
+// creates the typeDefs for the server
 const typeDefs = gql`
   type User {
     _id: ID
@@ -24,4 +26,5 @@ const typeDefs = gql`
   }
 `;
 
+// exports the typeDefs
 module.exports = typeDefs;
