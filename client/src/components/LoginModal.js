@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -37,11 +36,6 @@ const LoginModal = ({modalToggle}) => {
         });
     };
 
-=======
-import React from "react";
-
-const loginModal = props => {
->>>>>>> e34306583aa460b684e15955686f22149639818a
     return(
         <div className="modal">
             <div className="modal-content">
@@ -49,7 +43,6 @@ const loginModal = props => {
                     <h4 className="modal-title">Login</h4>
                 </div>
                 <div className="modal-body">
-<<<<<<< HEAD
                     Please Log In
                 </div>
                 <form onSubmit={handleFormSubmit}>
@@ -78,21 +71,11 @@ const loginModal = props => {
                 </form>
                 <div className="modal-footer">
                     <button className="button" onClick={function() {modalToggle(false)}}>Close</button>
-=======
-                    This is modal content 
-                </div>
-                <div className="modal-footer">
-                    <button className="button">Close</button>
->>>>>>> e34306583aa460b684e15955686f22149639818a
                 </div>
             </div>
         </div>
     )
 }
 
-<<<<<<< HEAD
 export default LoginModal;
 
-=======
-export default loginModal;
->>>>>>> e34306583aa460b684e15955686f22149639818a
