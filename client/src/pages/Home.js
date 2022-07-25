@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, Fragment } from "react";
+import LoginModal from "../components/LoginModal";
 
 const Home = () => {
     return (
-        <div>
-
-        </div>
+        <Fragment>
+            <LoginModal />
+        </Fragment>
     )
 }
 
 export default Home;
+
