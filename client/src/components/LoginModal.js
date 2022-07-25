@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const LoginModal = (props) => {
-    const [formState, setFormState] = useState({username: '', password: ''});
-    // const [login, { error }] = useMutation(LOGIN_USER);
+    const [formState, setFormState] = useState({email: '', password: ''});
+    const [login, { error }] = useMutation(LOGIN_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -19,21 +19,21 @@ const LoginModal = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        // try {
-        //     const { data } = await login({
-        //     variables: { ...formState },
-        //     });
+        try {
+            const { data } = await login({
+            variables: { ...formState },
+            });
 
-        //     Auth.login(data.login.token);
-        // } catch (e) {
-        //     console.error(e);
-        // }
+            Auth.login(data.login.token);
+        } catch (e) {
+            console.error(e);
+        }
 
-        // // clear form values
-        // setFormState({
-        //     email: '',
-        //     password: '',
-        // });
+        // clear form values
+        setFormState({
+            email: '',
+            password: '',
+        });
     };
 
     return(
@@ -46,14 +46,14 @@ const LoginModal = (props) => {
                     Please Log In
                 </div>
                 <form onSubmit={handleFormSubmit}>
-                    <label>Username:
+                    <label>Email:
                         <input 
                             className="form-input" 
-                            placeholder="Your Username"
-                            name="username"
-                            type='username'
-                            id="username"
-                            value={formState.username}
+                            placeholder="Your Email"
+                            name="email"
+                            type='email'
+                            id="email"
+                            value={formState.email}
                             onChange={handleChange}/>
                     </label>
                     <label>Password:
