@@ -5,7 +5,7 @@ import { setContext } from '@apollo/client/link/context'
 
 import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
-import Singlepage from './pages/SinglePage';
+import SinglePage from './pages/SinglePage';
 import UserProfilePage from './pages/UserProfilePage';
 import DonationsPage from './pages/DonationsPage';
 
