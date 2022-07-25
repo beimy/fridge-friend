@@ -9,3 +9,10 @@
     align-items: center;
     min-width: 40%;
 }
+
+.image{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    padding-top: 10px;
+}
