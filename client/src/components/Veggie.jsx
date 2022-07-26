@@ -23,7 +23,7 @@ function Veggie() {
         const data = await api.json();
 
 
-        LocalStorage.setItem("veggie", JSON.stringify(data.recipes));
+        localStorage.setItem("veggie", JSON.stringify(data.recipes));
         setVeggie(data.recipes);
         console.log(data.recipes)
        }; 
