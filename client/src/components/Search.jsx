@@ -9,7 +9,7 @@ function Search() {
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
-        e.preventDefault
+        e.preventDefault();
         navigate(`/searched/${input}`);
     };
 
