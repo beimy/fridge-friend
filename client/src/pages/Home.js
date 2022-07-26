@@ -1,29 +1,16 @@
-import React, { useEffect, Fragment, useState } from "react";
-import LoginModal from "../components/LoginModal";
-import SignUpModal from "../components/SignUpModal";
+import Veggie from "../components/Veggie";
+import Popular from "../components/Popular";
 
-const Home = () => {
-    const [isLoginModalActive, setIsLoginModalActive] = useState(false);
-    const [isSignUpModalActive, setisSignUpModalActive] = useState(false);
 
+import React from 'react';
+
+function Home() {
     return (
-        <Fragment>
-            <button type="button" onClick={function() {setIsLoginModalActive(true)}}>Login</button>
-            {isLoginModalActive && <LoginModal
-                                modalToggle={setIsLoginModalActive}
-                                
-                                />
-            }
-
-            <button type="button" onClick={function() {setisSignUpModalActive(true)}}>Sign Up</button>
-            {isSignUpModalActive && <SignUpModal
-                                modalToggle={setisSignUpModalActive}
-                                
-                                />
-            }
-        </Fragment>
+        <div>
+            <Veggie />
+            <Popular />
+        </div>
     )
 }
 
 export default Home;
-

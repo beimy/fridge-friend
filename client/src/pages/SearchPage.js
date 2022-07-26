@@ -3,8 +3,7 @@ import Recipe from "./Recipe"
 import ".././App.css";
 
 const App = ({favRecipe, setFavRecipe}) => {
-    const app_id = process.env.REACT_APP_EDAMAM_APP_ID;
-    const api_key = process.env.REACT_APP_EDAMAM_API_KEY;
+    const api_key = process.env.REACT_APP_SPOONACULAR_KEY;
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
