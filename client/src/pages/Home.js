@@ -24,7 +24,6 @@ const Home = () => {
                                 
                                 />
             }
-            <Footer></Footer>
         </Fragment>
     )
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import icon from "../../assets/icon.png";
+
 import Auth from "../../utils/auth";
 
 const NavBar = () => {
@@ -32,6 +34,8 @@ const NavBar = () => {
           <>
             <Link to="/searchPage">Search</Link>
             <Link to="/SinglePage">Favorites</Link>
+            <Link to="/UserProfilePage">Me</Link>
+            <Link to="/donations">Donations</Link>
           </>
         )}
       </nav>

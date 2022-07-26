@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header {
+  padding: 20px 35px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  top: 0;
+  background-image: url('./assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-position: 80%;
+  font-family:'Times New Roman', Times, serif 
+}
+
+.header h1 {
+  font-weight: bold;
+  font-size: 36px;
+  color: white;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.header h3 {
+  font-size: 20px;
+  color: white;
+}
