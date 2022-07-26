@@ -24,7 +24,9 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
                 variables: {uri},
             });
 
-            console.log(`Saved ${title} to favorite books`)
+
+            console.log(`Saved ${title} to favorite books`);
+
         } catch(err) {
             console.log(err);
         }
@@ -41,7 +43,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             </ol>
             <p>{calories}</p>
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
-            
+
         </div>
     );
 };

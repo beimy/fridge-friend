@@ -20,7 +20,9 @@ const typeDefs = gql`
     label: String
     ingredientLines: String
     yield: Int
-    images: String
+    image: String
+    // images: String
+
   }
 
   type Query {
