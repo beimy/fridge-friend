@@ -24,7 +24,9 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
                 variables: {uri},
             });
 
+
             console.log(`Saved ${title} to favorite books`);
+
         } catch(err) {
             console.log(err);
         }

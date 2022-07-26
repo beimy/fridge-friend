@@ -23,3 +23,10 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_RECIPE = gql`
+mutation addRecipe($label: String!) {
+  addRecipe(label: $label) {
+    label
+  }
+}`

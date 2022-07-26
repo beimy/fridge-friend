@@ -21,6 +21,8 @@ const typeDefs = gql`
     ingredientLines: String
     yield: Int
     image: String
+    // images: String
+
   }
 
   type Query {
@@ -36,6 +38,8 @@ const typeDefs = gql`
     addRecipe(label: String!): Recipe
   }
 `;
+// do we query a user's recipes by just querying the user?
+// be able to add & remove recipes from favorites
 
 // exports the typeDefs
 module.exports = typeDefs;

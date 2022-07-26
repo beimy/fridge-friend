@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ThoughtList from '../components/ThoughtList';
 import ThoughtForm from '../components/ThoughtForm';
