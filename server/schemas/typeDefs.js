@@ -17,10 +17,12 @@ const typeDefs = gql`
 
   type Recipe {
     _id: ID
-    label: String
+    title: String
     ingredientLines: String
-    yield: Int
     images: String
+    username: String!
+    url: String!
+    edamamID: String!
   }
 
   type Query {
@@ -33,7 +35,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addRecipe(label: String!): Recipe
+    addRecipe(title: String!, ingredientLines: String, images: String, username: String!, url: String!, edamamID: String!): Recipe
   }
 `;
 // do we query a user's recipes by just querying the user?

@@ -69,10 +69,11 @@ const resolvers = {
         addRecipe: async (parent, args, context) => {
             if (context.user) {
               const recipe = await Recipe.create({ ...args, username: context.user.username });
+              console.log(recipe);
       
               await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { favRecipes: recipe._id } },
+                { $push: { favRecipes: recipe } },
                 { new: true }
               );
       

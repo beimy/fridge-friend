@@ -2,11 +2,33 @@ import React, { useState } from 'react';
 import style from '../recipe.module.css';
 import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
+import { QUERY_ME, QUERY_RECIPES } from '../utils/queries';
 import Auth from '../utils/auth';
 
-const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
-    const [addRecipe, {error}] = useMutation(ADD_RECIPE);
+const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe, setFavRecipe }) => {
+    const ingredientLines = ingredients;
+    const edamamID = uri;
     // const [favRecipe, setFavRecipe] = useState({label: ''});
+
+    const [addRecipe, {error}] = useMutation(ADD_RECIPE, {
+       update(cache, { data: { addRecipe } }) {
+        try{
+            const {me} = cache.readQuery({ query: QUERY_ME});
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: {me: {...me, favRecipes: [...me.favRecipes, addRecipe] } },
+            });
+        } catch (e) {
+            console.warn("First recipe favorited")
+        }
+
+        const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
+        cache.writeQuery({
+            query: QUERY_RECIPES,
+            data: { recipes: [addRecipe, ...recipes] },
+        });
+       } 
+    });
 
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
@@ -19,20 +41,18 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             return false;
         }
 
-        try {
+        try{
             await addRecipe({
-                variables: {uri},
+                variables: { title, images, ingredientLines, url, edamamID}
             });
-
-            console.log(`Saved ${title} to favorite books`)
-        } catch(err) {
-            console.log(err);
+        } catch(e) {
+            console.error(e);
         }
     };
 
     return (
         <div className={style.recipe}>
-            <img className={style.image} src={image} alt=""/>
+            <img className={style.image} src={images} alt=""/>
             <h1>{title}</h1>
             <ol>
                 {ingredients.map(ingredient =>(
