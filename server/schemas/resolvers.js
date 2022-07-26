@@ -72,7 +72,7 @@ const resolvers = {
       
               await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { favRecipes: recipe._id } },
+                { $push: { favRecipes: recipe.recipeId } },
                 { new: true }
               );
       

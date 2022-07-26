@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const RecipeSchema = new Schema({
+    recipeId: {
+        type: String,
+        required: true
+    },
     label: {
         type: String
     },
@@ -10,23 +14,22 @@ const RecipeSchema = new Schema({
     yield: {
         type: Number
     },
-    images: {
+    image: {
         type: String,
         trim: true
     },
     username: {
         type: String,
         required: true
-    }
+      }
 },
 {
     toJSON: {
       getters: true
     }
-  })
+  });
 
-// creates the Recipe model using the RecipeSchema
-const Recipe = model('Recipe', RecipeSchema);
+  const Recipe = model('Recipe', RecipeSchema);
 
 // exports the model
 module.exports = Recipe;

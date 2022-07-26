@@ -16,24 +16,25 @@ const typeDefs = gql`
   }
 
   type Recipe {
-    _id: ID
+    recipeId: String
     label: String
     ingredientLines: String
     yield: Int
-    images: String
+    image: String
+    username: String
   }
 
   type Query {
     me: User
     users: [User]
     user(username: String!): User
-    recipes: Recipe
+    favRecipes(username: String): [Recipe]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addRecipe(label: String!): Recipe
+    addRecipe(recipeId: String!): Recipe
   }
 `;
 // do we query a user's recipes by just querying the user?

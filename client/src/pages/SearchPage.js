@@ -8,7 +8,7 @@ const api_key = process.env.REACT_APP_EDAMAM_API_KEY;
 
 const [recipes, setRecipes] = useState([]);
 const [search, setSearch] = useState("");
-const [query, setQuery] = useState("chicken");
+const [query, setQuery] = useState("");
 
 useEffect(() => {
     getRecipes();
