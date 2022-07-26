@@ -1,10 +1,10 @@
 const faker = require('faker');
 
 const db = require('../config/connection');
-const { User } = require('../models');
+const { Recipe, User } = require('../models');
 
 db.once('open', async () => {
-  
+  await Recipe.deleteMany({});
   await User.deleteMany({});
 
   // create user data
