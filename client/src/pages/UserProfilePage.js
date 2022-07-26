@@ -5,7 +5,7 @@ import UserProfile from 'react-user-profile'
 class App extends Component {
   render() {
     const photo = '/'
-    const userName = 'Harvey Specter'
+    const userName = `{user}`
     const location = 'New York, USA'
  
     const comments = [
