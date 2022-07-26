@@ -24,7 +24,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 5
-    }
+    },
+    favRecipes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe'
+      }
+    ]
   },
   {
     toJSON: {

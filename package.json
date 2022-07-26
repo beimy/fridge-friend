@@ -22,6 +22,7 @@
   "homepage": "https://github.com/beimy/group-project#readme",
   "devDependencies": {
     "concurrently": "^7.3.0"
+<<<<<<< HEAD
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
@@ -30,5 +31,7 @@
     "apollo-server-express": "^3.10.0",
     "framer-motion": "^6.5.1",
     "graphql": "^16.5.0"
+=======
+>>>>>>> 82e810901eb0f6e76e19c9a78e4707f68290cc1f
   }
 }
