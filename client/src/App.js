@@ -39,7 +39,9 @@ function App() {
             />
              <Route 
               path='SinglePage'
-              element={<SinglePage />}
+              element={<SinglePage
+                favRecipe={favRecipe}
+                setFavRecipe={setFavRecipe} />}
             />
              <Route 
               path='UserProfilePage'
