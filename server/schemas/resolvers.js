@@ -25,7 +25,6 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                 // blocks the __v element and the password element from being called
                     .select('-__v -password');
-
                 return userData;
             }
             // checks if user is logged in and throws error if not
@@ -63,8 +62,24 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-    }
-};
+        addRecipe: async (parent, args, context) => {
+            if (context.user) {
+                const recipe = await Recipe.create({ ...args, username: context.user.username });
+
+                await User.findByIdAndUpdate(
+                  { _id: context.user._id },
+                  { $push: { favRecipes: recipe._id } },
+                  { new: true }
+                );
+  
+                return recipe;
+              }
+  
+              throw new AuthenticationError('You need to be logged in!');
+            },
+            }
+        }
+
 
 // exports the resolvers
 module.exports = resolvers;

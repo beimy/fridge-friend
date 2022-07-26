@@ -5,7 +5,7 @@ function Footer() {
 		<footer className="footer">
 			<div>
 				<a
-					href="https://github.com/beimy"
+					href="https://github.com/beimy/frige-friend"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -16,6 +16,11 @@ function Footer() {
 					></img>
 				</a>
 			</div>
+
+			<div className="container">
+        &copy;{new Date().getFullYear()} by Fridge Friends
+      </div>
+
 		</footer>
 	);
 }
