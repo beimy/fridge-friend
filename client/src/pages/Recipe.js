@@ -10,25 +10,26 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
     const edamamID = uri;
     // const [favRecipe, setFavRecipe] = useState({label: ''});
 
-    const [addRecipe, {error}] = useMutation(ADD_RECIPE, {
-       update(cache, { data: { addRecipe } }) {
-        try{
-            const {me} = cache.readQuery({ query: QUERY_ME});
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: {me: {...me, favRecipes: [...me.favRecipes, addRecipe] } },
-            });
-        } catch (e) {
-            console.warn("First recipe favorited")
-        }
+    const [addRecipe, {error}] = useMutation(ADD_RECIPE);
+    //     , {
+    //    update(cache, { data: { addRecipe } }) {
+    //     try{
+    //         const {me} = cache.readQuery({ query: QUERY_ME});
+    //         cache.writeQuery({
+    //             query: QUERY_ME,
+    //             data: {me: {...me, favRecipes: [...me.favRecipes, addRecipe] } },
+    //         });
+    //     } catch (e) {
+    //         console.warn("First recipe favorited")
+    //     }
 
-        const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
-        cache.writeQuery({
-            query: QUERY_RECIPES,
-            data: { recipes: [addRecipe, ...recipes] },
-        });
-       } 
-    });
+    //     const { favRecipes } = cache.readQuery({ query: QUERY_RECIPES });
+    //     cache.writeQuery({
+    //         query: QUERY_RECIPES,
+    //         data: { recipes: [addRecipe, ...favRecipes] },
+    //     });
+    //    } 
+    // });
 
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
@@ -42,9 +43,11 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
         }
 
         try{
-            await addRecipe({
-                variables: { title, images, ingredientLines, url, edamamID}
+            const {data} = await addRecipe({
+                variables: { title, images, url, edamamID}
             });
+
+            Auth.loggedIn(data.loggedIn);
         } catch(e) {
             console.error(e);
         }
