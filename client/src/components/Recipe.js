@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 // import ReceipesButton from '../../components/ReceipesButton';
 
 const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
+    const ingredientLines = ingredients;
     const edamamID = uri;
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
     
@@ -24,7 +25,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
 
         try{
             await addRecipe({
-                variables: { title, images, url, edamamID, ingredientLines}
+                variables: { title, image, url, edamamID, ingredientLines}
             });
         } catch(e) {
             console.error(e);
