@@ -25,11 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_RECIPE = gql`
-mutation addRecipe($title: String!, $ingredientLines: String, $yield: Int, $images: String, $username: String!, $url: String!, $edamamID: String!) {
-  addRecipe(title: $title, ingredientLines: $ingredientLines, yield: $yield, images: $images, username: $username, url: $url, edamamID: $edamamID) {
+mutation addRecipe($title: String!, $ingredientLines: String, $images: String, $username: String, $url: String!, $edamamID: String!) {
+  addRecipe(title: $title, ingredientLines: $ingredientLines, images: $images, username: $username, url: $url, edamamID: $edamamID) {
     title
     ingredientLines
-    yield
     images
     username
     url
@@ -38,9 +37,9 @@ mutation addRecipe($title: String!, $ingredientLines: String, $yield: Int, $imag
 }`
 
 export const REMOVE_RECIPE = gql`
-  mutation removeRecipe($edamamID: String!) {
-    removeRecipe(edamamID: $edamamID) {
-      edamamID
-    }
+mutation removeRecipe($edamamID: String!) {
+  removeRecipe(edamamID: $edamamID) {
+    edamamID
   }
+}
 `;
