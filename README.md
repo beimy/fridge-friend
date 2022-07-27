@@ -23,7 +23,7 @@ An interactive MERN SPA project that allows users find a recipe. Users are able 
 + <a href="https://github.com/beimy">Aaron Rones</a>
 + <a href="https://github.com/Vshepard879">Vincent Shepard</a>
 + <a href="https://github.com/Devnah4">Martin Costas</a>
-+ <a href="">Skylar Jackson</a>
++ <a href="https://github.com/Doctor-Worm/">Skylar Jackson</a>
 
 
 ## License
