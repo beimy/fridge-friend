@@ -33,6 +33,11 @@ const resolvers = {
             }
             // checks if user is logged in and throws error if not
             throw new AuthenticationError('Not logged in');
+        },
+        // get recipe by username. if no username, return all thoughts
+        recipes: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Recipe.find(params).sort({ createdAt: -1 });
         }
     },
 

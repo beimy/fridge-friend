@@ -29,7 +29,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    recipes: Recipe
+    recipes(username: String): [Recipe]
   }
 
   type Mutation {
