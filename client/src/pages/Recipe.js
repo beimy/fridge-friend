@@ -3,7 +3,7 @@ import style from '../recipe.module.css';
 import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import Auth from '../utils/auth';
-import ReceipesButton from '../../components/ReceipesButton';
+
 const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
     // const [favRecipe, setFavRecipe] = useState({label: ''});
@@ -40,9 +40,12 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
                 ))}
             </ol>
             <p>{calories}</p>
+            <div className="receipe-data-button">
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
-            <ReceipesButton/>
+            <button><a href={url}  target="_blank">Recipe Url</a></button>
+            </div>
         </div>
+
     );
 };
 
