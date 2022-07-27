@@ -29,17 +29,16 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    recipes(username: String): [Recipe]
+    recipes: Recipe
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addRecipe(title: String!, ingredientLines: String, images: String, username: String!, url: String!, edamamID: String!): Recipe
+    addRecipe(title: String!, ingredientLines: String, images: String, username: String, url: String!, edamamID: String!): Recipe
+    removeRecipe(edamamID: String!): Recipe
   }
 `;
-// do we query a user's recipes by just querying the user?
-// be able to add & remove recipes from favorites
 
 // exports the typeDefs
 module.exports = typeDefs;
