@@ -44,7 +44,7 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
 
         try{
             await addRecipe({
-                variables: { title, images, url, edamamID}
+                variables: { title, images, url, edamamID, ingredientLines}
             });
         } catch(e) {
             console.error(e);
