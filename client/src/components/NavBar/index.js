@@ -12,6 +12,7 @@ import SignUpModal from "../SignUpModal";
 import Auth from "../../utils/auth";
 
 const NavBar = () => {
+  
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -21,16 +22,8 @@ const NavBar = () => {
   const [isSignUpModalActive, setisSignUpModalActive] = useState(false);
 
   return (
-    <main>
+    <>
       <nav className="nav">
-        {Auth.loggedIn() ? (
-          <>
-            <Link to="/UserProfilePage"></Link>
-            <a href="/" onClick={logout}>
-              Logout
-            </a>
-          </>
-        ) : (
           <>
             <ul id="rightnav">
               <li>
@@ -46,12 +39,30 @@ const NavBar = () => {
                   <span>search</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/UserProfilePage" style={{ textDecoration: "none" }}>
-                  <img src={favorite} alt="favorite" />
-                  <span>favorite</span>
-                </Link>
-              </li>
+                {Auth.loggedIn() ? (
+                  <li>
+                    <Link to="/UserProfilePage" style={{ textDecoration: "none" }}>
+                      <img src={favorite} alt="favorite" />
+                      <span>favorites</span>
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                  </li>
+                )}
+                {Auth.loggedIn() ? (
+                  <>
+                    <Link to="/UserProfilePage"></Link>
+                    <a href="/" onClick={logout}>
+                      Logout
+                    </a>
+                  </>
+                ) : (
+                  <li>
+                    <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                  </li>
+                )}
               <li>
                 <Link to="/donations" style={{ textDecoration: "none" }}>
                   <img src={donations} alt="donations" />
@@ -60,31 +71,14 @@ const NavBar = () => {
               </li>
             </ul>
           </>
-        )}
       </nav>
 
-      <button
-        type="button"
-        onClick={function () {
-          setIsLoginModalActive(true);
-        }}
-      >
-        Login
-      </button>
-      {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive} />}
-
-      <button
-        type="button"
-        onClick={function () {
-          setisSignUpModalActive(true);
-        }}
-      >
-        Sign Up
-      </button>
-      {isSignUpModalActive && (
-        <SignUpModal modalToggle={setisSignUpModalActive} />
-      )}
-    </main>
+      <>
+        {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive}/>}
+        {isSignUpModalActive && <SignUpModal modalToggle={setisSignUpModalActive}/>}   
+      </>
+    </>
+   
   );
 };
 
