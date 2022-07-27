@@ -34,32 +34,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        {/* <Navbar /> */}
+        {/* {<Navbar />} */}
         <div className="flex-column justify-flex-start min-100-vh">
           <Routes>
             <Route
               path='/'
               element={<Home />}
-            />
-            <Route 
-              path='searchPage'
-              element={<SearchPage
-                favRecipe={favRecipe}
-                setFavRecipe={setFavRecipe} />}
-            />
-             <Route 
-              path='SinglePage'
-              element={<SinglePage
-                favRecipe={favRecipe}
-                setFavRecipe={setFavRecipe} />}
-            />
-             {/* <Route 
-              path='UserProfilePage'
-              element={<UserProfilePage />}
-            /> */}
-             <Route 
-              path='donations'
-              element={<DonationsPage />}
             />
             <Route 
               path='searchPage'

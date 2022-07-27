@@ -10,8 +10,8 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
     const edamamID = uri;
     // const [favRecipe, setFavRecipe] = useState({label: ''});
 
-    const [addRecipe, {error}] = useMutation(ADD_RECIPE);
-    //     , {
+    const [addRecipe, {error}] = useMutation(ADD_RECIPE)
+    // , {
     //    update(cache, { data: { addRecipe } }) {
     //     try{
     //         const {me} = cache.readQuery({ query: QUERY_ME});
@@ -23,10 +23,10 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
     //         console.warn("First recipe favorited")
     //     }
 
-    //     const { favRecipes } = cache.readQuery({ query: QUERY_RECIPES });
+    //     const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
     //     cache.writeQuery({
     //         query: QUERY_RECIPES,
-    //         data: { recipes: [addRecipe, ...favRecipes] },
+    //         data: { recipes: [addRecipe, ...recipes] },
     //     });
     //    } 
     // });
@@ -44,12 +44,12 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
         }
 
         try{
-            const {data} = await addRecipe({
+            await addRecipe({
                 variables: { title, images, url, edamamID}
             });
             console.log(title);
 
-            Auth.loggedIn(data.loggedIn);
+            // Auth.loggedIn(data.loggedIn);
         } catch(e) {
             console.error(e);
         }
