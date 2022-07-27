@@ -37,10 +37,10 @@ function App() {
         {/* <Navbar /> */}
         <div className="flex-column justify-flex-start min-100-vh">
           <Routes>
-            {/* <Route
+            <Route
               path='/'
               element={<Home />}
-            /> */}
+            />
             <Route 
               path='searchPage'
               element={<SearchPage

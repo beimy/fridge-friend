@@ -51,7 +51,7 @@ const App = ({favRecipe, setFavRecipe}) => {
                 ingredients={recipe.recipe.ingredientLines}
                 uri={(recipe.recipe.uri).split('_')[1]}
                 url={recipe.recipe.url}
-                yeld={recipe.recipe.yield} />
+                />
             ))}
             </div>
         </div>

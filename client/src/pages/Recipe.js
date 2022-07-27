@@ -34,6 +34,7 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
         setFavRecipe(uri);
+        
 
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -46,6 +47,7 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
             const {data} = await addRecipe({
                 variables: { title, images, url, edamamID}
             });
+            console.log(title);
 
             Auth.loggedIn(data.loggedIn);
         } catch(e) {
