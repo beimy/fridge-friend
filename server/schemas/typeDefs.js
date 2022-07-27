@@ -9,12 +9,10 @@ const typeDefs = gql`
     email: String
     favRecipes: [Recipe]
   }
-
   type Auth {
     token: ID!
     user: User
   }
-
   type Recipe {
     _id: ID
     title: String
@@ -24,14 +22,12 @@ const typeDefs = gql`
     url: String!
     edamamID: String!
   }
-
   type Query {
     me: User
     users: [User]
     user(username: String!): User
     recipes: Recipe
   }
-
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
