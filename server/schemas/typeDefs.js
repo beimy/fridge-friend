@@ -18,7 +18,7 @@ const typeDefs = gql`
   type Recipe {
     _id: ID
     title: String
-    ingredientLines: [String]
+    ingredientLines: String
     images: String
     username: String!
     url: String!
