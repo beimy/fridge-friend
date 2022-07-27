@@ -4,33 +4,14 @@ import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import { QUERY_ME, QUERY_RECIPES } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
+// import ReceipesButton from '../../components/ReceipesButton';
 
-const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe, setFavRecipe }) => {
+const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
     const ingredientLines = ingredients;
     const edamamID = uri;
-    // const [favRecipe, setFavRecipe] = useState({label: ''});
-
-    const [addRecipe, {error}] = useMutation(ADD_RECIPE)
-    // , {
-    //    update(cache, { data: { addRecipe } }) {
-    //     try{
-    //         const {me} = cache.readQuery({ query: QUERY_ME});
-    //         cache.writeQuery({
-    //             query: QUERY_ME,
-    //             data: {me: {...me, favRecipes: [...me.favRecipes, addRecipe] } },
-    //         });
-    //     } catch (e) {
-    //         console.warn("First recipe favorited")
-    //     }
-
-    //     const { recipes } = cache.readQuery({ query: QUERY_RECIPES });
-    //     cache.writeQuery({
-    //         query: QUERY_RECIPES,
-    //         data: { recipes: [addRecipe, ...recipes] },
-    //     });
-    //    } 
-    // });
-
+    const [addRecipe, {error}] = useMutation(ADD_RECIPE);
+    
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
         setFavRecipe(uri);
@@ -45,7 +26,7 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
 
         try{
             await addRecipe({
-                variables: { title, images, url, edamamID}
+                variables: { title, image, url, edamamID, ingredientLines}
             });
             console.log(title);
 
@@ -55,19 +36,30 @@ const Recipe = ({ title, calories, images, ingredients, url, id, uri, favRecipe,
         }
     };
 
+    const singlePageHandler = () => {
+        localStorage.setItem('currentRecipeId', `${edamamID}`);
+        setFavRecipe(uri);
+    }
+
     return (
         <div className={style.recipe}>
-            <img className={style.image} src={images} alt=""/>
+            <img className={style.image} src={image} alt=""/>
             <h1>{title}</h1>
             <ol>
                 {ingredients.map(ingredient =>(
-                    <li>{ingredient.text}</li>
+                    <li>{ingredient}</li>
                 ))}
             </ol>
             <p>{calories}</p>
+            <div className="receipe-data-button">
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
-            
+            <button type='button' onClick={singlePageHandler}>
+                <Link to='/singlepage' style={{ textDecoration: 'none' }}>See more...</Link>
+            </button>
+            <a href={url}  target="_blank">Check the full recipe here</a>
+            </div>
         </div>
+
     );
 };
 

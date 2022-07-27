@@ -1,29 +1,15 @@
 import React, {  Fragment, useState } from "react";
 import LoginModal from "../components/LoginModal";
 import SignUpModal from "../components/SignUpModal";
-
-const Home = () => {
-    const [isLoginModalActive, setIsLoginModalActive] = useState(false);
-    const [isSignUpModalActive, setIsSignUpModalActive] = useState(false);
-
+import { Outlet } from "react-router-dom";
+import HomePage from '../components/homePage/homePage.component'
+const Home = () => { 
     return (
-        <Fragment>
-            <button type="button" onClick={function() {setIsLoginModalActive(true)}}>Login</button>
-            {isLoginModalActive && <LoginModal
-                                modalToggle={setIsLoginModalActive}
-                                
-                                />
-            }
-
-            <button type="button" onClick={function() {setIsSignUpModalActive(true)}}>Sign Up</button>
-            {isSignUpModalActive && <SignUpModal
-                                modalToggle={setIsSignUpModalActive}
-                                
-                                />
-            }
-
-        </Fragment>
-    )
+        <div>
+            <Outlet />
+            <HomePage/>           
+        </div>
+    )   
 }
 
 export default Home;

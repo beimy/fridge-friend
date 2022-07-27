@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Recipe from "./Recipe"
+import Recipe from "../components/Recipe"
 import ".././App.css";
 
 const App = ({favRecipe, setFavRecipe}) => {
@@ -30,7 +30,6 @@ const App = ({favRecipe, setFavRecipe}) => {
     const getSearch = e => {
         e.preventDefault();
         setQuery(search);
-        setSearch("");
     }
 
     return (
@@ -47,8 +46,8 @@ const App = ({favRecipe, setFavRecipe}) => {
                 key={recipe.recipe.calories} 
                 title={recipe.recipe.label}
                 calories={recipe.recipe.calories} 
-                images={recipe.recipe.image} 
-                ingredients={recipe.recipe.ingredients}
+                image={recipe.recipe.image} 
+                ingredients={recipe.recipe.ingredientLines}
                 uri={(recipe.recipe.uri).split('_')[1]}
                 url={recipe.recipe.url}
                 />
