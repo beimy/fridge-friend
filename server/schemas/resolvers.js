@@ -33,12 +33,9 @@ const resolvers = {
             }
             // checks if user is logged in and throws error if not
             throw new AuthenticationError('Not logged in');
-        },
-        recipes: async (parent, { username }) => {
-                    const params = username ? { username } : {};
-                    return Recipe.find(params).sort({ createdAt: -1 });
-        },
+        }
     },
+
     Mutation: {
         addUser: async (parent, args) => {
             // sets the info to be sent to the server to be stored in the database
@@ -70,18 +67,16 @@ const resolvers = {
             return { token, user };
         },
         addRecipe: async (parent, args, context) => {
-            console.log('hello there')
             if (context.user) {
               const recipe = await Recipe.create({ ...args, username: context.user.username });
               console.log(recipe);
       
-              const userData = await User.findByIdAndUpdate(
+              await User.findByIdAndUpdate(
                 { _id: context.user._id },
                 { $push: { favRecipes: recipe } },
                 { new: true }
               );
-                
-              console.log(userData)
+      
               return recipe;
             }
       

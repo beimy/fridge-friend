@@ -48,7 +48,7 @@ const App = ({favRecipe, setFavRecipe}) => {
                 title={recipe.recipe.label}
                 calories={recipe.recipe.calories} 
                 images={recipe.recipe.image} 
-                ingredients={recipe.recipe.ingredientLines}
+                ingredients={recipe.recipe.ingredients}
                 uri={(recipe.recipe.uri).split('_')[1]}
                 url={recipe.recipe.url}
                 yeld={recipe.recipe.yield} />
