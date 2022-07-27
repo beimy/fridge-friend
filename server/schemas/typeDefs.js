@@ -36,6 +36,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addRecipe(title: String!, ingredientLines: String, images: String, username: String, url: String!, edamamID: String!): Recipe
+    removeRecipe(edamamID: String!): Recipe
   }
 `;
 

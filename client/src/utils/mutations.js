@@ -35,3 +35,11 @@ mutation addRecipe($title: String!, $ingredientLines: String, $images: String, $
     edamamID
   }
 }`
+
+export const REMOVE_RECIPE = gql`
+mutation removeRecipe($edamamID: String!) {
+  removeRecipe(edamamID: $edamamID) {
+    edamamID
+  }
+}
+`;
