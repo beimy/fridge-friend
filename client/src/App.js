@@ -29,7 +29,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [favRecipe, setFavRecipe] = useState({label: ''});
+  const [favRecipe, setFavRecipe] = useState({title: '', uri : '' });
 
   return (
     <ApolloProvider client={client}>
@@ -42,19 +42,19 @@ function App() {
               element={<Home />}
             />
             <Route 
-              path='searchPage'
+              path='searchpage'
               element={<SearchPage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='SinglePage'
+              path='singlepage'
               element={<SinglePage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='UserProfilePage'
+              path='userprofilepage'
               element={<UserProfilePage />}
             />
              <Route 

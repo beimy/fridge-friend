@@ -34,14 +34,14 @@ const NavBar = () => {
                 </div>
               </li>
               <li>
-                <Link to="/searchPage" style={{ textDecoration: "none" }}>
+                <Link to="/searchpage" style={{ textDecoration: "none" }}>
                   <img src={search} alt="search" />
                   <span>search</span>
                 </Link>
               </li>
                 {Auth.loggedIn() ? (
                   <li>
-                    <Link to="/UserProfilePage" style={{ textDecoration: "none" }}>
+                    <Link to="/userprofilepage" style={{ textDecoration: "none" }}>
                       <img src={favorite} alt="favorite" />
                       <span>favorites</span>
                     </Link>
@@ -53,7 +53,7 @@ const NavBar = () => {
                 )}
                 {Auth.loggedIn() ? (
                   <>
-                    <Link to="/UserProfilePage"></Link>
+                    <Link to="/userprofilepage"></Link>
                     <a href="/" onClick={logout}>
                       Logout
                     </a>

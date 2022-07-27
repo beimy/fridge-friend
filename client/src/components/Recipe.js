@@ -4,16 +4,13 @@ import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import { QUERY_ME, QUERY_RECIPES } from '../utils/queries';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 // import ReceipesButton from '../../components/ReceipesButton';
 
 const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
-
     const edamamID = uri;
-    
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
-    // const [favRecipe, setFavRecipe] = useState({label: ''});
-
-
+    
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
         setFavRecipe(uri);
@@ -34,6 +31,11 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
         }
     };
 
+    const singlePageHandler = () => {
+        localStorage.setItem('currentRecipeId', `${edamamID}`);
+        setFavRecipe(uri);
+    }
+
     return (
         <div className={style.recipe}>
             <img className={style.image} src={image} alt=""/>
@@ -46,7 +48,10 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             <p>{calories}</p>
             <div className="receipe-data-button">
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
-            <button><a href={url}  target="_blank">Recipe Url</a></button>
+            <button type='button' onClick={singlePageHandler}>
+                <Link to='/singlepage' style={{ textDecoration: 'none' }}>See more...</Link>
+            </button>
+            <a href={url}  target="_blank">Check the full recipe here</a>
             </div>
         </div>
 
