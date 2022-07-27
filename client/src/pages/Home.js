@@ -1,10 +1,10 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, {  Fragment, useState } from "react";
 import LoginModal from "../components/LoginModal";
 import SignUpModal from "../components/SignUpModal";
 
 const Home = () => {
     const [isLoginModalActive, setIsLoginModalActive] = useState(false);
-    const [isSignUpModalActive, setisSignUpModalActive] = useState(false);
+    const [isSignUpModalActive, setIsSignUpModalActive] = useState(false);
 
     return (
         <Fragment>
@@ -15,9 +15,9 @@ const Home = () => {
                                 />
             }
 
-            <button type="button" onClick={function() {setisSignUpModalActive(true)}}>Sign Up</button>
+            <button type="button" onClick={function() {setIsSignUpModalActive(true)}}>Sign Up</button>
             {isSignUpModalActive && <SignUpModal
-                                modalToggle={setisSignUpModalActive}
+                                modalToggle={setIsSignUpModalActive}
                                 
                                 />
             }
