@@ -94,20 +94,20 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeRecipe: async (parent, args, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
+    // removeRecipe: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const updatedUser = await User.findOneAndUpdate(
+    //       { _id: context.user._id },
 
-          { $pull: { favRecipes: { name: args.name } } },
+    //       { $pull: { favRecipes: { name: args.name } } },
 
-          { new: true }
-        );
-        console.log(updatedUser);
-        return updatedUser;
-      }
-      throw new AuthenticationError("Please login in!");
-    },
+    //       { new: true }
+    //     );
+    //     console.log(updatedUser);
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError("Please login in!");
+    // },
   },
 };
 
