@@ -4,8 +4,11 @@ import { useMutation } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import { QUERY_ME, QUERY_RECIPES } from '../utils/queries';
 import Auth from '../utils/auth';
+import ReceipesButton from '../../components/ReceipesButton';
 
 const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe }) => {
+
+    const edamamID = uri;
     
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
     // const [favRecipe, setFavRecipe] = useState({label: ''});
@@ -24,7 +27,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
 
         try{
             await addRecipe({
-                variables: { title, images, url, edamamID}
+                variables: { title, image, url, edamamID}
             });
         } catch(e) {
             console.error(e);

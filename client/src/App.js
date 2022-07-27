@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink }  from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import SinglePage from './pages/SinglePage';
@@ -34,7 +34,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        {/* {<Navbar />} */}
+      <NavBar />
         <div className="flex-column justify-flex-start min-100-vh">
           <Routes>
             <Route
