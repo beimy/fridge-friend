@@ -38,8 +38,6 @@ const typeDefs = gql`
     addRecipe(title: String!, ingredientLines: [String], images: String, username: String, url: String!, edamamID: String!): Recipe
   }
 `;
-// do we query a user's recipes by just querying the user?
-// be able to add & remove recipes from favorites
 
 // exports the typeDefs
 module.exports = typeDefs;
