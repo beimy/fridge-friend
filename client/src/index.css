@@ -1,13 +1,102 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav {
+  margin: 0;
+}
+
+.nav li:first-child {
+  float: left;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav ul li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.nav ul li a {
+  display: block;
+  padding: 1em 3em;
+  text-decoration: none;
+}
+
+.nav ul li:first-child {
+  margin-right: auto;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  display: block;
+  text-indent: -9999px;
+  float: left;
+}
+
+.title {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#rightnav span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  top: 75px;
+  right: 10px;
+  line-height: 38px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0;
+
+  /* CSS3 Transition: */
+  -webkit-transition: 0.5s;
+  /* Future proofing (these do not work yet): */
+  -moz-transition: 0.5s;
+  transition: 0.8s;
+}
+
+#rightnav a:hover span {
+  width: auto;
+  padding: 0 30px;
+  overflow: visible;
+}
+#rightnav a:hover {
+  text-decoration: none;
+}
+#rightnav a span {
+  background-color: #fff;
+  color: #3d4f0c;
 }
