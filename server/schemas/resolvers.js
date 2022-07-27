@@ -1,111 +1,94 @@
-const { User, Thought } = require('../models');
+const { User, Recipe } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        thoughts: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Thought.find(params).sort({ createdAt: -1 });
-        },
-
-        thought: async (parent, { _id }) => {
-            return Thought.findOne({ _id });
-        },
-
         users: async () => {
+            // return all users
             return User.find()
-                .select('__v -password')
-                .populate('friends')
-                .populate('thoughts');
+            // blocks the __v element and the password element from being called
+                 .select('-__v -password')
+                 .populate('favRecipes');
         },
 
         user: async (parent, { username }) => {
+            // returns a single user by id
             return User.findOne({ username })
-                .select('__v -password')
-                .populate('friends')
-                .populate('thoughts');
+            // blocks the __v element and the password element from being called
+                .select('-__v -password')
+                .populate('favRecipes');
         },
 
         me: async (parent, args, context) => {
+            // returns the user that is currently logged in
             if(context.user) {
+                // if the user is logged in, return the user
                 const userData = await User.findOne({ _id: context.user._id })
+                // blocks the __v element and the password element from being called
                     .select('-__v -password')
-                    .populate('thoughts')
-                    .populate('friends');
+                    .populate('favRecipes');
 
                 return userData;
             }
-
+            // checks if user is logged in and throws error if not
             throw new AuthenticationError('Not logged in');
-        }
+        },
+        recipes: async (parent, { username }) => {
+                    const params = username ? { username } : {};
+                    return Recipe.find(params).sort({ createdAt: -1 });
+        },
     },
-
     Mutation: {
         addUser: async (parent, args) => {
+            // sets the info to be sent to the server to be stored in the database
             const user = await User.create(args);
             const token = signToken(user);
 
+            // returns the user and the token
             return { token, user };
         },
         login: async (parent, { email, password }) => {
+            // finds the user by email
             const user = await User.findOne({ email });
 
+            // if the user is not found, throw an error
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
+            // if the user is found, check if the password is correct
             const correctPw = await user.isCorrectPassword(password);
 
+            // if the password is incorrect, throw an error
             if(!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
+            // if the password is correct, sign the user in
             const token = signToken(user);
             return { token, user };
         },
-        addThought: async (parent, args, context) => {
+        addRecipe: async (parent, args, context) => {
+            console.log('hello there')
             if (context.user) {
-                const thought = await Thought.create({ ...args, username: context.user.username });
-
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { thoughts: thought._id } },
-                    { new: true }
-                );
-
-                return thought;
+              const recipe = await Recipe.create({ ...args, username: context.user.username });
+              console.log(recipe);
+      
+              const userData = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { favRecipes: recipe } },
+                { new: true }
+              );
+                
+              console.log(userData)
+              return recipe;
             }
-
+      
             throw new AuthenticationError('You need to be logged in!');
-        },
-        addReaction: async (parent, { thoughtId, reactionBody }, context) => {
-            if(context.user) {
-                const updatedThought = await Thought.findOneAndUpdate(
-                    { _id: thoughtId },
-                    { $push: { reactions: { reactionBody, username: context.user.username } } },
-                    { new: true, runValidators: true }
-                );
-
-                return updatedThought;
-            }
-
-            throw new AuthenticationError('You need to be logged in!');
-        },
-        addFriend: async(parent, { friendId }, context) => {
-            if(context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { friends: friendId } },
-                    { new: true }
-                ).populate('friends');
-
-                return updatedUser;
-            }
-
-            throw new AuthenticationError('You need to be logged in!');
-        }
+          },
     }
 };
 
+// exports the resolvers
 module.exports = resolvers;

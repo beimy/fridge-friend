@@ -1,9 +1,13 @@
+// imports the Schema and model types from mongoose
 const { Schema, model } = require('mongoose');
+// hashes the password before saving it to the database
 const bcrypt = require('bcrypt');
 
+// creates the user model
 const userSchema = new Schema(
   {
     username: {
+      // Sets username type value as a string that is required and unique
       type: String,
       required: true,
       unique: true,
@@ -13,6 +17,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      // regex value used to validate the email
       match: [/.+@.+\..+/, 'Must match an email address!']
     },
     password: {
@@ -20,22 +25,17 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    thoughts: [
+    favRecipes: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Thought'
+        ref: 'Recipe'
       }
     ],
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ]
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
+      getters: true
     }
   }
 );
@@ -55,10 +55,13 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual('friendCount').get(function() {
-  return this.friends.length;
-});
+// This is where the favorited recipes are to be stored
+// userSchema.virtual('favoriteRecipe').get(function() {
+//   return this.recipe.length;
+// });
 
+// creates the useable User model
 const User = model('User', userSchema);
 
+// exports the model
 module.exports = User;

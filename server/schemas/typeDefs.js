@@ -1,29 +1,13 @@
+// creates the GraphQL schema for the server
 const { gql } = require('apollo-server-express');
 
+// creates the typeDefs for the server
 const typeDefs = gql`
   type User {
     _id: ID
     username: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
-  }
-
-  type Thought {
-    _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
-
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
+    favRecipes: [Recipe]
   }
 
   type Auth {
@@ -31,21 +15,31 @@ const typeDefs = gql`
     user: User
   }
 
+  type Recipe {
+    _id: ID
+    title: String
+    ingredientLines: [String]
+    images: String
+    username: String!
+    url: String!
+    edamamID: String!
+  }
+
   type Query {
     me: User
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+    recipes(username: String): [Recipe]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addReaction(thoughtId: ID!, reactionBody: String!): Thought
-    addFriend(friendId: ID!): User
+    addRecipe(title: String!, ingredientLines: [String], images: String, username: String, url: String!, edamamID: String!): Recipe
   }
 `;
+// do we query a user's recipes by just querying the user?
+// be able to add & remove recipes from favorites
 
+// exports the typeDefs
 module.exports = typeDefs;
