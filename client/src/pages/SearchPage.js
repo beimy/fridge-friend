@@ -16,7 +16,7 @@ const App = ({favRecipe, setFavRecipe}) => {
 
     const getRecipes = async () => {
         const response = await fetch(
-            `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`
+            `https://api.edamam.com/search?q=${query}&app_id=66de0d20&app_key=e88198d85ac46f01aa8f1b2b16c71d83`
         );
         const data = await response.json();
         setRecipes(data.hits);
