@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_RECIPE = gql`
-mutation addRecipe($title: String!, $ingredientLines: String, $images: String, $username: String, $url: String!, $edamamID: String!) {
+mutation addRecipe($title: String!, $ingredientLines: [String], $images: String, $username: String, $url: String!, $edamamID: String!) {
   addRecipe(title: $title, ingredientLines: $ingredientLines, images: $images, username: $username, url: $url, edamamID: $edamamID) {
     title
     ingredientLines

@@ -5,7 +5,7 @@ const RecipeSchema = new Schema({
         type: String
     },
     ingredientLines: {
-        type: String
+        type: [String]
     },
     images: {
         type: String,

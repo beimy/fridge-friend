@@ -24,7 +24,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
 
         try{
             await addRecipe({
-                variables: { title, image, url, edamamID}
+                variables: { title, images, url, edamamID, ingredientLines}
             });
         } catch(e) {
             console.error(e);
@@ -42,7 +42,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             <h1>{title}</h1>
             <ol>
                 {ingredients.map(ingredient =>(
-                    <li>{ingredient.text}</li>
+                    <li>{ingredient}</li>
                 ))}
             </ol>
             <p>{calories}</p>
