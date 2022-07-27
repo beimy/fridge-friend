@@ -8,14 +8,16 @@ const resolvers = {
             // return all users
             return User.find()
             // blocks the __v element and the password element from being called
-                 .select('-__v -password');
+                 .select('-__v -password')
+                 .populate('favRecipes');
         },
 
         user: async (parent, { username }) => {
             // returns a single user by id
             return User.findOne({ username })
             // blocks the __v element and the password element from being called
-                .select('-__v -password');
+                .select('-__v -password')
+                .populate('favRecipes');
         },
 
         me: async (parent, args, context) => {
@@ -24,15 +26,19 @@ const resolvers = {
                 // if the user is logged in, return the user
                 const userData = await User.findOne({ _id: context.user._id })
                 // blocks the __v element and the password element from being called
-                    .select('-__v -password');
+                    .select('-__v -password')
+                    .populate('favRecipes');
 
                 return userData;
             }
             // checks if user is logged in and throws error if not
             throw new AuthenticationError('Not logged in');
-        }
+        },
+        recipes: async (parent, { username }) => {
+                    const params = username ? { username } : {};
+                    return Recipe.find(params).sort({ createdAt: -1 });
+        },
     },
-
     Mutation: {
         addUser: async (parent, args) => {
             // sets the info to be sent to the server to be stored in the database
@@ -63,6 +69,24 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+        addRecipe: async (parent, args, context) => {
+            console.log('hello there')
+            if (context.user) {
+              const recipe = await Recipe.create({ ...args, username: context.user.username });
+              console.log(recipe);
+      
+              const userData = await User.findByIdAndUpdate(
+                { _id: context.user._id },
+                { $push: { favRecipes: recipe } },
+                { new: true }
+              );
+                
+              console.log(userData)
+              return recipe;
+            }
+      
+            throw new AuthenticationError('You need to be logged in!');
+          },
     }
 };
 
