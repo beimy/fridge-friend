@@ -87,20 +87,29 @@ const resolvers = {
       
             throw new AuthenticationError('You need to be logged in!');
           },
-          removeRecipe: async (parent, args, context) => {
+          removeRecipe: async (parent, { edamamID }, context) => {
             if (context.user) {
-              const updatedUser = await User.findOneAndUpdate(
-                { _id: context.user._id },
+            //   const updatedUser = await User.findOneAndUpdate(
+            //     { _id: context.user._id },
 
-                { $pull: { favRecipes: { name: args.name } } },
+            //     { $pull: { favRecipes: { name: args.name } } },
 
-                { new: true }
-              );
-              console.log(updatedUser);
-              return updatedUser;
+            //     { new: true }
+            //   );
+
+            try {
+                const recipe = await Recipe.findById(edamamID);
+                if (User.username === recipe.username) {
+                    await recipe.delete();
+                    return 'Post deleted successfully';
+                } else {
+                    throw new AuthenticationError('Action not allowed.');
+                }
+            } catch(err) {
+                throw new Error(err);
             }
-            throw new AuthenticationError("Please login in!");
-          },
+          }
+        }
     }
 };
 
