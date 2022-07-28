@@ -40,7 +40,6 @@ const resolvers = {
             return Recipe.find(params).sort({ createdAt: -1 });
         }
     },
-
     Mutation: {
         addUser: async (parent, args) => {
             // sets the info to be sent to the server to be stored in the database
