@@ -27,6 +27,7 @@ const UserProfilePage = ({favRecipe, setFavRecipe}) => {
                 ingredients={recipe.ingredientLines}
                 uri={recipe.uri}
                 url={recipe.url}
+                id={recipe._id}
                 />
             </li>
           ))}

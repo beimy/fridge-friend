@@ -51,7 +51,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
 
         try {
             await removeRecipe({
-                variable: { id }
+                variables: { id }
             });
         } catch(e) {
             console.error(e);
