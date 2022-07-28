@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from '../recipe.module.css';
 import { useMutation } from '@apollo/client';
-import { ADD_RECIPE } from '../utils/mutations';
+import { ADD_RECIPE, REMOVE_RECIPE } from '../utils/mutations';
 import { QUERY_ME, QUERY_RECIPES } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,9 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
     const ingredientLines = ingredients;
     const edamamID = uri;
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
+    const [removeRecipe] = useMutation(REMOVE_RECIPE);
+    // const id = id
+    console.log(id);
     
     const addToFavoriteHandler = async (event) => {
         event.preventDefault();
@@ -26,7 +29,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
 
         try{
             await addRecipe({
-                variables: { title, image, url, edamamID, ingredientLines}
+                variables: { title, image, url, edamamID, ingredientLines }
             });
             console.log(title);
 
@@ -35,6 +38,26 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             console.error(e);
         }
     };
+
+    const removeFavoriteHandler = async (event) => {
+        event.preventDefault();
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if(!token) {
+            console.log('no token found');
+            return false;
+        }
+
+        try {
+            await removeRecipe({
+                variable: { id }
+            });
+        } catch(e) {
+            console.error(e);
+        }
+        
+    }
 
     const singlePageHandler = () => {
         localStorage.setItem('currentRecipeId', `${edamamID}`);
@@ -54,10 +77,11 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             <p>{calories}</p>
             <div className="receipe-data-button">
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
+            <button type='button' onClick={removeFavoriteHandler}>Remove from Favorites</button>
             <button type='button' onClick={singlePageHandler}>
                 <Link to='/singlepage' style={{ textDecoration: 'none' }}>See more...</Link>
             </button>
-            <a href={url}  target="_blank">Check the full recipe here</a>
+            <a href={url}  target="_blank"><button type="button">Check the full recipe here</button></a>
             </div>
         </div>
 
