@@ -16,7 +16,11 @@ const typeDefs = gql`
   type Recipe {
     _id: ID
     title: String
+<<<<<<< HEAD
     ingredientLines: [String]
+=======
+    ingredientLines: String
+>>>>>>> b9da88f1b907485ceb444dc4f539456fa7c887ea
     images: String
     username: String!
     url: String!
