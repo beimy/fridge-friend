@@ -9,7 +9,7 @@ import { RecipeProvider, useRecipeContext } from '../utils/GlobalState';
 // import ReceipesButton from '../../components/ReceipesButton';
 // import { ADD_RECIPES, REMOVE_RECIPES } from '../utils/actions';
 
-const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe, fromSearch, fromUser }) => {
+const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favRecipe, setFavRecipe, fromSearch, fromUser, cuisineType, dietLabels, dishType, mealType, totalTime }) => {
     const ingredientLines = ingredients;
     const edamamID = uri;
     const [addRecipe, {error}] = useMutation(ADD_RECIPE);
@@ -84,6 +84,14 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             {image && <img className={style.image} src={image} alt=""/>}
 
             <h1>{title}</h1>
+            <h2>  
+                {cuisineType && <p className={style.cuisineType}>{cuisineType}</p>}
+                {dietLabels && <p className={style.dietLabels}>{dietLabels}</p>}
+                {dishType && <p className={style.dishType}>{dishType}</p>}
+                {mealType && <p className={style.mealType}>{mealType}</p>}
+                {totalTime && <p className={style.totalTime}>{totalTime}</p>}
+             </h2>
+             <h3>Ingredients:</h3>
             <ol>
                 {ingredients.map(ingredient =>(
                     <li>{ingredient}</li>
@@ -93,9 +101,9 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
             <div className="receipe-data-button">
             {!fromUser && <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>}
             {!fromSearch && <button type='button' onClick={removeFavoriteHandler}>Remove from Favorites</button>}
-            <button type='button' onClick={singlePageHandler}>
+            {/* <button type='button' onClick={singlePageHandler}>
                 <Link to='/singlepage' style={{ textDecoration: 'none' }}>See more...</Link>
-            </button>
+            </button> */}
             <a href={url}  target="_blank"><button type="button">Check the full recipe here</button></a>
             </div>
         </div>

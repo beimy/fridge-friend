@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import '../App.css'
+import Recipe from "../components/Recipe";
 
 const SinglePage = ({favRecipe, setFavRecipe}) => {
     const savedRecipeId = favRecipe.uri;
@@ -8,6 +9,7 @@ const SinglePage = ({favRecipe, setFavRecipe}) => {
 
     const [recipe, setRecipe] = useState();
     let hasLoaded = false;
+    let data;
 
     useEffect(() => {
         if(!hasLoaded) {
@@ -40,13 +42,35 @@ const SinglePage = ({favRecipe, setFavRecipe}) => {
         const response = await fetch(
             `https://api.edamam.com/api/recipes/v2/${recipe}?type=public&app_id=66de0d20&app_key=e88198d85ac46f01aa8f1b2b16c71d83`
         );
-        const data = await response.json();
-        console.log(data);
+        const recipeData = await response.json();
+        console.log(recipeData);
+        data = recipeData;
     };
 
     return (
         <Fragment>
-            {recipe && <p>{`${recipe}`}</p>}
+            {recipe && 
+             <div className="App">
+                <div className="recipes">
+                    <Recipe
+                    favRecipe={favRecipe}
+                    setFavRecipe={setFavRecipe}
+                    key={data.recipe.calories} 
+                    title={data.recipe.label}
+                    calories={data.recipe.calories} 
+                    image={data.recipe.image} 
+                    ingredients={data.recipe.ingredientLines}
+                    uri={data.recipe.uri}
+                    url={data.recipe.url}
+                    cuisineType={data.recipe.cuisine}
+                    dietLabels={data.recipe.dietLabels}
+                    dishType={data.recipe.dishType}
+                    mealType={data.recipe.mealType}
+                    totalTime={data.recipe.totalTime}
+                    />
+                </div>
+            </div>
+            }
         </Fragment>
     )
 }
