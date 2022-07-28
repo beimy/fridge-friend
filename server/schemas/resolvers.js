@@ -107,6 +107,19 @@ const resolvers = {
                 }
             }
           },
+          addComment: async (parent, { commentId, commentBody }, context) => {
+            if (context.user) {
+              const updatedRecipe = await Recipe.findOneAndUpdate(
+                { _id: commentId },
+                { $push: { comments: { commentBody, username: context.user.username } } },
+                { new: true, runValidators: true }
+              );
+          
+              return updatedRecipe;
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 };
 
