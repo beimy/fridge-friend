@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { QUERY_RECIPES, QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import UserProfile from 'react-user-profile';
+import Recipe from '../components/Recipe';
+// import UserProfile from 'react-user-profile';
 
  
 const UserProfilePage = () => {
@@ -22,8 +23,6 @@ const UserProfilePage = () => {
   //   }
   // ];
 
-    
-
     if(loading) return 'Loading';
     if(error) return `Error! ${error.message}`;
     console.log(data.me.favRecipes);
@@ -31,8 +30,17 @@ const UserProfilePage = () => {
     return (
       <div style={{ margin: '0 auto', width: '100%' }}>
         <ul>
-          {data.me.favRecipes.map(receipe => (
-            <li>{receipe.title}</li>
+          {data.me.favRecipes.map(recipe => (
+            <li key={recipe.uri}>
+                <Recipe
+                key={recipe.uri} 
+                title={recipe.title}
+                image={recipe.image} 
+                ingredients={recipe.ingredientLines}
+                uri={(recipe.uri).split('')[1]}
+                url={recipe.url}
+                />
+            </li>
           ))}
         </ul>
 

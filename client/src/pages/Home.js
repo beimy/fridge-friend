@@ -1,6 +1,5 @@
-import React, {  Fragment, useState } from "react";
-import LoginModal from "../components/LoginModal";
-import SignUpModal from "../components/SignUpModal";
+import React, { useEffect, Fragment, useState } from "react";
+
 import { Outlet } from "react-router-dom";
 import HomePage from '../components/homePage/homePage.component'
 const Home = () => { 
