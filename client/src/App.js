@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink }  from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import SinglePage from './pages/SinglePage';
@@ -13,18 +13,28 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
-  const [favRecipe, setFavRecipe] = useState({label: ''});
+  const [favRecipe, setFavRecipe] = useState({title: '', uri : '' });
 
   return (
     <ApolloProvider client={client}>
       <Router>
-        {/* <Navbar /> */}
+      <NavBar />
         <div className="flex-column justify-flex-start min-100-vh">
           <Routes>
             <Route
@@ -32,19 +42,19 @@ function App() {
               element={<Home />}
             />
             <Route 
-              path='searchPage'
+              path='searchpage'
               element={<SearchPage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='SinglePage'
+              path='singlepage'
               element={<SinglePage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='UserProfilePage'
+              path='userprofilepage'
               element={<UserProfilePage />}
             />
              <Route 
