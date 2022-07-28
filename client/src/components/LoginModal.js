@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import { QUERY_ME } from "../utils/queries";
 import Auth from '../utils/auth';
 
 // import style from '../loginmodal.module.css';
 
-const LoginModal = ({modalToggle}) => {
+const LoginModal = ({modalToggle, usersFavRecipeList, setUsersFavRecipeList}) => {
     const [formState, setFormState] = useState({email: '', password: ''});
-    const [login, { error }] = useMutation(LOGIN_USER);
-
+    const [login] = useMutation(LOGIN_USER);
+    const [getUserData, {data}] = useLazyQuery(QUERY_ME);
+    
     const handleChange = (event) => {
         const { name, value } = event.target;
     
@@ -17,6 +19,12 @@ const LoginModal = ({modalToggle}) => {
           [name]: value,
         });
     };
+
+    const fetchUserData = () => {
+        getUserData();
+        console.log(data);
+        return data;
+    }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -27,6 +35,9 @@ const LoginModal = ({modalToggle}) => {
             });
 
             Auth.login(data.login.token);
+
+            var userData = await fetchUserData();
+
         } catch (e) {
             console.error(e);
         }
@@ -42,10 +53,9 @@ const LoginModal = ({modalToggle}) => {
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h4 className="modal-title">Login</h4>
+                    <h4 className="modal-title">Login Here</h4>
                 </div>
                 <div className="modal-body">
-                    Please Log In
                 </div>
                 <form onSubmit={handleFormSubmit}>
                     <label>Email:
@@ -69,10 +79,14 @@ const LoginModal = ({modalToggle}) => {
                             onChange={handleChange}
                         />
                     </label>
-                    <button className="btn" type="submit">Login</button>
+                    <div className="receipe-data-button">
+                        <button className="btn" type="submit">Login</button>
+                    </div>
                 </form>
                 <div className="modal-footer">
-                    <button className="button" onClick={function() {modalToggle(false)}}>Close</button>
+                    <div className="receipe-data-button">
+                        <button className="button" onClick={function() { modalToggle(false) }}>Close</button>
+                    </div>
                 </div>
             </div>
         </div>

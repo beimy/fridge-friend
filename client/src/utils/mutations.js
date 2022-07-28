@@ -33,6 +33,7 @@ mutation addRecipe($title: String!, $ingredientLines: [String], $images: String,
     username
     url
     edamamID
+    _id
   }
 }`
 

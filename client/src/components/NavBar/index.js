@@ -11,7 +11,7 @@ import SignUpModal from "../SignUpModal";
 
 import Auth from "../../utils/auth";
 
-const NavBar = () => {
+const NavBar = ({usersFavRecipeList, setUsersFavRecipeList}) => {
   
   const logout = (event) => {
     event.preventDefault();
@@ -48,33 +48,41 @@ const NavBar = () => {
                   </li>
                 ) : (
                   <li>
-                    <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                    <div className="receipe-data-button">
+                      <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                    </div>
                   </li>
                 )}
                 {Auth.loggedIn() ? (
                   <>
                     <Link to="/userprofilepage"></Link>
-                    <a href="/" onClick={logout}>
-                      Logout
-                    </a>
+                    <div className="receipe-data-button">
+                      <button type="button" onClick={logout}>
+                        Logout
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <li>
-                    <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                    <div className="receipe-data-button">
+                     <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                    </div>
                   </li>
                 )}
-              <li>
+              {/* <li>
                 <Link to="/donations" style={{ textDecoration: "none" }}>
                   <img src={donations} alt="donations" />
                   <span>donations</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </>
       </nav>
 
       <>
-        {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive}/>}
+        {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive}
+                                            usersFavRecipeList={usersFavRecipeList}
+                                            setUsersFavRecipeList={setUsersFavRecipeList}/>}
         {isSignUpModalActive && <SignUpModal modalToggle={setisSignUpModalActive}/>}   
       </>
     </>

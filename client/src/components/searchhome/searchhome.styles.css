@@ -1,13 +1,12 @@
 .homesearch{
-    position:absolute;
+    position: sticky;
     top:45%;
     left:44%;
 }
-
 .homesearch button{
     margin-top: 10px;
     color:white;
-    background-color: #ff6b81;
+    background-color: rgb(215, 117, 32);
    padding:1rem;
    border-radius: 5px;
    font-size: large;
@@ -17,9 +16,7 @@
    font-family: 'Merriweather', serif;
    transition: all 0.5s ease-in;
    cursor: pointer;
-
 }
-
 .homesearch button:hover{
     background-color: #eb2f06
 }
