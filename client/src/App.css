@@ -62,3 +62,26 @@ hr{
 .receipe-data-button button a{
   color:#f7f1e3;
 }
+
+.intro {
+  text-align: center;
+  color: white;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  padding-top: 10px;
+}
+
+.big-div {
+  padding-left: 10rem;
+}
+
+.padding-top {
+  padding-top: 20px
+}
+
+.lettuce-div {
+    font-size: 3.5em;
+    font-weight: 500;
+    margin: 5px 0;
+    line-height: 1.25;
+    padding-bottom: 2rem;
+}

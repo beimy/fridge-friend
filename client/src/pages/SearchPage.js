@@ -34,9 +34,16 @@ const App = ({favRecipe, setFavRecipe, usersFavRecipeList, setUsersFavRecipeList
 
     return (
         <div className="App">
+            <div className="intro">
+                <h1>Time to Get Your Search On</h1>
+                <p>Enter a single ingredient to view the recipe magic!</p>
+            </div>
             <form onSubmit={getSearch} className="search-form">
                 <input className="search-bar" type="text" value={search} onChange={updateSearch} />
-                <button className="search-button" type="submit" onClick={getRecipes}>Search</button>
+                <div className="receipe-data-button">
+                  <button className="search-button" type="submit" onClick={getRecipes}>Search</button>
+                </div>
+                
             </form>
             <div className="recipes">
             {recipes.map(recipe => (
