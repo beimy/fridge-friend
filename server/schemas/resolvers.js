@@ -87,7 +87,6 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
           },
           removeRecipe: async (parent, { _id }, context) => {
-            
             if (context.user) {
                 const user = context.user;
                 
