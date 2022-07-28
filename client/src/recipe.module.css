@@ -10,9 +10,17 @@
     min-width: 40%;
 }
 
+.recipe h2{ font-size: 2.5em;
+	font-weight: 500;
+	margin: 5px 0;
+	line-height: 1.25;
+	padding-bottom: 2rem; }
+
 .image{
     border-radius: 50%;
     width: 300px;
     height: 300px;
     padding-top: 10px;
 }
+
+

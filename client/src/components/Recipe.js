@@ -45,12 +45,13 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
         <div className={style.recipe}>
             <img className={style.image} src={image} alt=""/>
             <h1>{title}</h1>
+            <h2> Ingredients</h2>
             <ol>
                 {ingredients.map(ingredient =>(
                     <li>{ingredient}</li>
                 ))}
             </ol>
-            <p>{calories}</p>
+            <p> Calories: {calories}</p>
             <div className="receipe-data-button">
             <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>
             <button type='button' onClick={singlePageHandler}>
