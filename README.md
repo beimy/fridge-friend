@@ -14,16 +14,12 @@ An interactive MERN SPA project that allows users find a recipe. Users are able 
 - Mongoose ODM
 - JWT
 
-## Screenshot
-
 
 ## Link
+https://fridge-friends.herokuapp.com/
 
 ## Contributors
 + <a href="https://github.com/beimy">Aaron Rones</a>
 + <a href="https://github.com/Vshepard879">Vincent Shepard</a>
 + <a href="https://github.com/Devnah4">Martin Costas</a>
 + <a href="https://github.com/Doctor-Worm/">Skylar Jackson</a>
-
-
-## License
