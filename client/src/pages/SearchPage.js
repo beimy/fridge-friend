@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Recipe from "../components/Recipe"
 import ".././App.css";
 
-const App = ({favRecipe, setFavRecipe }) => {
+const App = ({favRecipe, setFavRecipe, usersFavRecipeList, setUsersFavRecipeList }) => {
     const app_id = process.env.REACT_APP_EDAMAM_APP_ID;
     const api_key = process.env.REACT_APP_EDAMAM_API_KEY;
 
@@ -40,17 +40,22 @@ const App = ({favRecipe, setFavRecipe }) => {
             </form>
             <div className="recipes">
             {recipes.map(recipe => (
-                <Recipe
-                favRecipe={favRecipe}
-                setFavRecipe={setFavRecipe}
-                key={recipe.recipe.calories} 
-                title={recipe.recipe.label}
-                calories={recipe.recipe.calories} 
-                image={recipe.recipe.image} 
-                ingredients={recipe.recipe.ingredientLines}
-                uri={(recipe.recipe.uri).split('_')[1]}
-                url={recipe.recipe.url}
+                
+                    <Recipe
+                    usersFavRecipeList={usersFavRecipeList}
+                    setUsersFavRecipeList={setUsersFavRecipeList}
+                    favRecipe={favRecipe}
+                    setFavRecipe={setFavRecipe}
+                    key={recipe.recipe.calories} 
+                    title={recipe.recipe.label}
+                    calories={recipe.recipe.calories} 
+                    image={recipe.recipe.image} 
+                    ingredients={recipe.recipe.ingredientLines}
+                    uri={(recipe.recipe.uri).split('_')[1]}
+                    url={recipe.recipe.url}
+                    fromSearch={true}
                 />
+               
             ))}
             </div>
         </div>

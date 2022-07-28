@@ -11,7 +11,7 @@ import SignUpModal from "../SignUpModal";
 
 import Auth from "../../utils/auth";
 
-const NavBar = () => {
+const NavBar = ({usersFavRecipeList, setUsersFavRecipeList}) => {
   
   const logout = (event) => {
     event.preventDefault();
@@ -74,7 +74,9 @@ const NavBar = () => {
       </nav>
 
       <>
-        {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive}/>}
+        {isLoginModalActive && <LoginModal modalToggle={setIsLoginModalActive}
+                                            usersFavRecipeList={usersFavRecipeList}
+                                            setUsersFavRecipeList={setUsersFavRecipeList}/>}
         {isSignUpModalActive && <SignUpModal modalToggle={setisSignUpModalActive}/>}   
       </>
     </>
