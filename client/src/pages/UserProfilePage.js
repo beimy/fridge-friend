@@ -34,10 +34,9 @@ const UserProfilePage = () => {
             <li key={recipe.uri}>
                 <Recipe
                 key={recipe.uri} 
-                title={recipe.title}
-                image={recipe.image} 
+                title={recipe.title} 
                 ingredients={recipe.ingredientLines}
-                uri={(recipe.uri).split('')[1]}
+                uri={recipe.uri}
                 url={recipe.url}
                 />
             </li>
