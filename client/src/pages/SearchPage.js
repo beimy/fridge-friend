@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Recipe from "./Recipe"
+import Recipe from "../components/Recipe"
 import ".././App.css";
 
 const App = ({favRecipe, setFavRecipe}) => {
@@ -16,7 +16,7 @@ const App = ({favRecipe, setFavRecipe}) => {
 
     const getRecipes = async () => {
         const response = await fetch(
-            `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`
+            `https://api.edamam.com/search?q=${query}&app_id=66de0d20&app_key=e88198d85ac46f01aa8f1b2b16c71d83`
         );
         const data = await response.json();
         setRecipes(data.hits);
@@ -30,7 +30,6 @@ const App = ({favRecipe, setFavRecipe}) => {
     const getSearch = e => {
         e.preventDefault();
         setQuery(search);
-        setSearch("");
     }
 
     return (
@@ -48,10 +47,10 @@ const App = ({favRecipe, setFavRecipe}) => {
                 title={recipe.recipe.label}
                 calories={recipe.recipe.calories} 
                 image={recipe.recipe.image} 
-                ingredients={recipe.recipe.ingredients}
+                ingredients={recipe.recipe.ingredientLines}
                 uri={(recipe.recipe.uri).split('_')[1]}
                 url={recipe.recipe.url}
-                yeld={recipe.recipe.yield} />
+                />
             ))}
             </div>
         </div>

@@ -4,6 +4,20 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            // returns the user that is currently logged in
+            if(context.user) {
+                // if the user is logged in, return the user
+                const userData = await User.findOne({ _id: context.user._id })
+                // blocks the __v element and the password element from being called
+                    .select('-__v -password')
+                    .populate('favRecipes');
+
+                return userData;
+            }
+            // checks if user is logged in and throws error if not
+            throw new AuthenticationError('Not logged in');
+        },
         users: async () => {
             // return all users
             return User.find()
@@ -19,20 +33,11 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('favRecipes');
         },
-
-        me: async (parent, args, context) => {
-            // returns the user that is currently logged in
-            if(context.user) {
-                // if the user is logged in, return the user
-                const userData = await User.findOne({ _id: context.user._id })
-                // blocks the __v element and the password element from being called
-                    .select('-__v -password')
-                    .populate('favRecipes');
-
-                return userData;
-            }
-            // checks if user is logged in and throws error if not
-            throw new AuthenticationError('Not logged in');
+        
+        // get recipe by username. if no username, return all thoughts
+        recipes: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Recipe.find(params).sort({ createdAt: -1 });
         }
     },
 
@@ -69,10 +74,11 @@ const resolvers = {
         addRecipe: async (parent, args, context) => {
             if (context.user) {
               const recipe = await Recipe.create({ ...args, username: context.user.username });
+              console.log(recipe);
       
               await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { favRecipes: recipe._id } },
+                { $push: { favRecipes: recipe } },
                 { new: true }
               );
       
@@ -80,6 +86,20 @@ const resolvers = {
             }
       
             throw new AuthenticationError('You need to be logged in!');
+          },
+          removeRecipe: async (parent, args, context) => {
+            if (context.user) {
+              const updatedUser = await User.findOneAndUpdate(
+                { _id: context.user._id },
+
+                { $pull: { favRecipes: { name: args.name } } },
+
+                { new: true }
+              );
+              console.log(updatedUser);
+              return updatedUser;
+            }
+            throw new AuthenticationError("Please login in!");
           },
     }
 };

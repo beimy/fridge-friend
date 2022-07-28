@@ -13,13 +13,23 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
-  const [favRecipe, setFavRecipe] = useState({label: ''});
+  const [favRecipe, setFavRecipe] = useState({title: '', uri : '' });
 
   return (
     <ApolloProvider client={client}>
@@ -32,19 +42,19 @@ function App() {
               element={<Home />}
             />
             <Route 
-              path='searchPage'
+              path='searchpage'
               element={<SearchPage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='SinglePage'
+              path='singlepage'
               element={<SinglePage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
             />
              <Route 
-              path='UserProfilePage'
+              path='userprofilepage'
               element={<UserProfilePage />}
             />
              <Route 

@@ -2,19 +2,13 @@ import React, { useEffect, Fragment, useState } from "react";
 
 import { Outlet } from "react-router-dom";
 import HomePage from '../components/homePage/homePage.component'
-const Home = () => {
-   
-
+const Home = () => { 
     return (
         <div>
-       
-                    <Outlet />
-                    <HomePage/>
-                    
+            <Outlet />
+            <HomePage/>           
         </div>
-    )
-    
+    )   
 }
 
 export default Home;
-
