@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comments');
 
 const RecipeSchema = new Schema({
     title: {
@@ -21,13 +22,14 @@ const RecipeSchema = new Schema({
     edamamID: {
         type: String,
         required: true
-    }
+    },
+    comments: [commentSchema]
 },
 {
     toJSON: {
       getters: true
     }
-  })
+})
 
 // creates the Recipe model using the RecipeSchema
 const Recipe = model('Recipe', RecipeSchema);
