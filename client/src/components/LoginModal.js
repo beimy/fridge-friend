@@ -46,9 +46,9 @@ const LoginModal = ({modalToggle}) => {
                     Please Log In
                 </div>
                 <form onSubmit={handleFormSubmit}>
-                    <label>Email:
+                    <label>Email:  
                         <input 
-                            className="form-input" 
+                            className="form-input " 
                             placeholder="Your Email"
                             name="email"
                             type='email'
@@ -67,10 +67,14 @@ const LoginModal = ({modalToggle}) => {
                             onChange={handleChange}
                         />
                     </label>
+                    <div className="receipe-data-button">
                     <button className="btn" type="submit">Login</button>
+                    </div>
                 </form>
                 <div className="modal-footer">
+                <div className="receipe-data-button">
                     <button className="button" onClick={function() {modalToggle(false)}}>Close</button>
+                    </div>
                 </div>
             </div>
         </div>

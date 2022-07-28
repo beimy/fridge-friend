@@ -100,3 +100,70 @@ a:active {
   background-color: #fff;
   color: #3d4f0c;
 }
+
+/* Viewports Styling start*/
+@media screen and (max-width: 980px) {}
+
+@media screen and (max-width: 817px) {
+	header div {
+		position: relative;
+		width: 110%;
+	}
+
+	header div h2 {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+
+	nav ul li span {
+		font-size: 0.75em;
+	}
+
+	.mobile-header {
+		width: 110%;
+	}
+
+	.mobile-row {
+		display: block;
+		margin: 0 100px 0 auto;
+	}
+
+	.mobile-view {
+		display: inline;
+		text-align: end;
+	}
+
+	.photo {
+		width: auto;
+		height: auto;
+		max-width: 500px;
+		max-height: 300px;
+		padding: 50px;
+	}
+
+	input {
+		width: 350px;
+	}
+
+	textarea {
+		width: 350px;
+		height: 120px;
+		border: 3px solid #cccccc;
+		padding: 5px;
+	}
+
+	ol {
+		font-size: 0.75rem;
+	}
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 575px) {}
+
+/* Viewports Styling end*/

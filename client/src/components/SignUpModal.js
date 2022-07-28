@@ -34,10 +34,7 @@ const SignUpModal = ({modalToggle}) => {
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h4 className="modal-title">SignUp</h4>
-                </div>
-                <div className="modal-body">
-                    Sign Up Below
+                    <h4 className="modal-title">Sign Up Down Below</h4>
                 </div>
                 <form onSubmit={handleFormSubmit}>
                     <label>Email:
@@ -72,10 +69,14 @@ const SignUpModal = ({modalToggle}) => {
                             onChange={handleChange}
                         />
                     </label>
+                    <div className="receipe-data-button">
                     <button className="btn" type="submit">Login</button>
+                    </div>
                 </form>
                 <div className="modal-footer">
+                <div className="receipe-data-button">
                     <button className="button" onClick={function() {modalToggle(false)}}>Close</button>
+                    </div>
                 </div>
             </div>
         </div>

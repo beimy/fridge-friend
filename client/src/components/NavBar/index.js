@@ -48,19 +48,25 @@ const NavBar = () => {
                   </li>
                 ) : (
                   <li>
+                    <div className="receipe-data-button">
                     <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                    </div>
                   </li>
                 )}
                 {Auth.loggedIn() ? (
                   <>
+                  <div className="receipe-data-button">
                     <Link to="/userprofilepage"></Link>
                     <a href="/" onClick={logout}>
                       Logout
                     </a>
+                    </div>
                   </>
                 ) : (
                   <li>
+                    <div className="receipe-data-button">
                     <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                    </div>
                   </li>
                 )}
               <li>

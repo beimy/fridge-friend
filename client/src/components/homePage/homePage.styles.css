@@ -22,8 +22,8 @@
 .homecard{
     display: flex;
     flex-direction: column;
-    width: 58vw;
-    max-height: 70vh;
+    width: 69%;
+    max-height: 69%;
     justify-content: center;
     align-items: center;
     background-color:#0b0bab1a;
