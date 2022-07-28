@@ -1,0 +1,11 @@
+<div>
+// checks if the favRecipe id matches the recipe id and will render the first button if true
+  {favRecipe._id === recipe._id ? (
+    <button className="btn btn-danger" onClick={() => {removeFavRecipe(favRecipe._id);}}> Remove from favorites </button>
+  ) : (
+    <button className="btn btn-success" onClick={() => {addFavRecipe(recipe);}}> Add to favorites </button>
+  )}
+</div>;
+
+// assigns the key value to EACH li element so they all have a different key
+<li key="ingredient">{ingredient.text}</li>
