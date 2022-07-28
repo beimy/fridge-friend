@@ -23,3 +23,4 @@ https://fridge-friends.herokuapp.com/
 + <a href="https://github.com/Vshepard879">Vincent Shepard</a>
 + <a href="https://github.com/Devnah4">Martin Costas</a>
 + <a href="https://github.com/Doctor-Worm/">Skylar Jackson</a>
++ <a href="https://github.com/JamieSteinbauer">Jamie Steinbauer</a>
