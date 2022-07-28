@@ -22,6 +22,12 @@ const typeDefs = gql`
     url: String!
     edamamID: String!
   }
+  type Comment {
+    _id: ID
+    username: String
+    commentBody: String
+    createdAt: String
+  }
   type Query {
     me: User
     users: [User]
@@ -33,6 +39,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addRecipe(title: String!, ingredientLines: [String], images: String, username: String, url: String!, edamamID: String!): Recipe
     removeRecipe(edamamID: String!): Recipe
+    addComment(recipeId: ID!, commentBody: String!): Recipe
   }
 `;
 
