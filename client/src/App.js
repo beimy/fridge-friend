@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import SinglePage from './pages/SinglePage';
 import UserProfilePage from './pages/UserProfilePage';
-import DonationsPage from './pages/DonationsPage';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,10 +58,6 @@ function App() {
               element={<UserProfilePage
                 favRecipe={favRecipe}
                 setFavRecipe={setFavRecipe} />}
-            />
-             <Route 
-              path='donations'
-              element={<DonationsPage />}
             />
           </Routes>
         </div>
