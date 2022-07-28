@@ -13,7 +13,7 @@ const db = require("./config/connection");
 const path = require("path");
 
 // sets up the port for testing Apollo locally on port 3001
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
