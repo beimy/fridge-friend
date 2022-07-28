@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Recipe from "../components/Recipe"
 import ".././App.css";
 
-const App = ({favRecipe, setFavRecipe}) => {
+const App = ({favRecipe, setFavRecipe }) => {
     const app_id = process.env.REACT_APP_EDAMAM_APP_ID;
     const api_key = process.env.REACT_APP_EDAMAM_API_KEY;
 
