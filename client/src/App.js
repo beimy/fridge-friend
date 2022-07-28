@@ -55,7 +55,9 @@ function App() {
             />
              <Route 
               path='userprofilepage'
-              element={<UserProfilePage />}
+              element={<UserProfilePage
+                favRecipe={favRecipe}
+                setFavRecipe={setFavRecipe} />}
             />
              <Route 
               path='donations'

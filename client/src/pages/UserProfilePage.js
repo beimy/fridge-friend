@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { QUERY_RECIPES, QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import Recipe from '../components/Recipe';
-// import UserProfile from 'react-user-profile';
+import UserProfile from 'react-user-profile';
 
  
-const UserProfilePage = () => {
+const UserProfilePage = ({favRecipe, setFavRecipe}) => {
 
   const {loading, error, data} = useQuery(QUERY_ME);
 
@@ -33,17 +33,18 @@ const UserProfilePage = () => {
           {data.me.favRecipes.map(recipe => (
             <li key={recipe.uri}>
                 <Recipe
+                favRecipe={favRecipe}
+                setFavRecipe={setFavRecipe}
                 key={recipe.uri} 
                 title={recipe.title}
-                image={recipe.image} 
+                image={recipe.images} 
                 ingredients={recipe.ingredientLines}
-                uri={(recipe.uri).split('')[1]}
+                uri={recipe.uri}
                 url={recipe.url}
                 />
             </li>
           ))}
         </ul>
-
       </div>
     )
 
