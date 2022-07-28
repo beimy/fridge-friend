@@ -53,10 +53,9 @@ const LoginModal = ({modalToggle, usersFavRecipeList, setUsersFavRecipeList}) =>
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h4 className="modal-title">Login</h4>
+                    <h4 className="modal-title">Login Here</h4>
                 </div>
                 <div className="modal-body">
-                    Please Log In
                 </div>
                 <form onSubmit={handleFormSubmit}>
                     <label>Email:
@@ -80,10 +79,14 @@ const LoginModal = ({modalToggle, usersFavRecipeList, setUsersFavRecipeList}) =>
                             onChange={handleChange}
                         />
                     </label>
-                    <button className="btn" type="submit">Login</button>
+                    <div className="receipe-data-button">
+                        <button className="btn" type="submit">Login</button>
+                    </div>
                 </form>
                 <div className="modal-footer">
-                    <button className="button" onClick={function() { modalToggle(false) }}>Close</button>
+                    <div className="receipe-data-button">
+                        <button className="button" onClick={function() { modalToggle(false) }}>Close</button>
+                    </div>
                 </div>
             </div>
         </div>

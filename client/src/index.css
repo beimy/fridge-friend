@@ -6,18 +6,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 a,
 a:hover,
 a:focus,
@@ -25,47 +22,38 @@ a:active {
   text-decoration: none;
   color: inherit;
 }
-
-.nav {
+/* .nav {
   margin: 0;
-}
-
+} */
 .nav li:first-child {
   float: left;
 }
-
 .nav ul {
   display: flex;
 }
-
 .nav ul li {
   display: inline-block;
   list-style-type: none;
 }
-
 .nav ul li a {
   display: block;
   padding: 1em 3em;
   text-decoration: none;
 }
-
 .nav ul li:first-child {
   margin-right: auto;
 }
-
 .logo {
   width: 80px;
-  height: 80px;
   display: block;
   text-indent: -9999px;
   float: left;
+  padding: 5px;
 }
-
 .title {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-
 #rightnav span {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
@@ -80,14 +68,12 @@ a:active {
   position: absolute;
   white-space: nowrap;
   width: 0;
-
   /* CSS3 Transition: */
   -webkit-transition: 0.5s;
   /* Future proofing (these do not work yet): */
   -moz-transition: 0.5s;
   transition: 0.8s;
 }
-
 #rightnav a:hover span {
   width: auto;
   padding: 0 30px;
@@ -98,5 +84,55 @@ a:active {
 }
 #rightnav a span {
   background-color: #fff;
-  color: #3d4f0c;
+  color: #3D4F0C;
 }
+@media screen and (max-width: 980px) {}
+@media screen and (max-width: 817px) {
+    header div {
+        position: relative;
+        width: 110%;
+    }
+    header div h2 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    nav ul li span {
+        font-size: 0.75em;
+    }
+    .mobile-header {
+        width: 110%;
+    }
+    .mobile-row {
+        display: block;
+        margin: 0 100px 0 auto;
+    }
+    .mobile-view {
+        display: inline;
+        text-align: end;
+    }
+    .photo {
+        width: auto;
+        height: auto;
+        max-width: 500px;
+        max-height: 300px;
+        padding: 50px;
+    }
+    input {
+        width: 350px;
+    }
+    textarea {
+        width: 350px;
+        height: 120px;
+        border: 3px solid #CCCCCC;
+        padding: 5px;
+    }
+    ol {
+        font-size: 0.75rem;
+    }
+}
+@media screen and (max-width: 768px) {}
+@media screen and (max-width: 575px) {}

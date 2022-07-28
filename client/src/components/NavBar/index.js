@@ -48,27 +48,33 @@ const NavBar = ({usersFavRecipeList, setUsersFavRecipeList}) => {
                   </li>
                 ) : (
                   <li>
-                    <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                    <div className="receipe-data-button">
+                      <button type="button" onClick={function () {setIsLoginModalActive(true);}}>Login</button>
+                    </div>
                   </li>
                 )}
                 {Auth.loggedIn() ? (
                   <>
                     <Link to="/userprofilepage"></Link>
-                    <a href="/" onClick={logout}>
-                      Logout
-                    </a>
+                    <div className="receipe-data-button">
+                      <button type="button" onClick={logout}>
+                        Logout
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <li>
-                    <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                    <div className="receipe-data-button">
+                     <button type="button" onClick={function () {setisSignUpModalActive(true)}}>Sign Up</button>
+                    </div>
                   </li>
                 )}
-              <li>
+              {/* <li>
                 <Link to="/donations" style={{ textDecoration: "none" }}>
                   <img src={donations} alt="donations" />
                   <span>donations</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </>
       </nav>
