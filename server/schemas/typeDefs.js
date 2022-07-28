@@ -21,6 +21,7 @@ const typeDefs = gql`
     username: String!
     url: String!
     edamamID: String!
+    comments: [Comment] 
   }
   type Comment {
     _id: ID

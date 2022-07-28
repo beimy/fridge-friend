@@ -106,14 +106,15 @@ const resolvers = {
                 }
             }
           },
-          addComment: async (parent, { commentId, commentBody }, context) => {
+          addComment: async (parent, { recipeId, commentBody }, context) => {
             if (context.user) {
+                console.log(`${recipeId} ${commentBody}`);
               const updatedRecipe = await Recipe.findOneAndUpdate(
-                { _id: commentId },
+                { _id: recipeId },
                 { $push: { comments: { commentBody, username: context.user.username } } },
                 { new: true, runValidators: true }
               );
-          
+                console.log(updatedRecipe);
               return updatedRecipe;
             }
           
