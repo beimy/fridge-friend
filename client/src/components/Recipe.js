@@ -97,7 +97,7 @@ const Recipe = ({ title, calories, image, ingredients, url, yeild, id, uri, favR
                     <li>{ingredient}</li>
                 ))}
             </ol>
-            <p>{calories}</p>
+            <p>Calories: {calories}</p>
             <div className="receipe-data-button">
             {!fromUser && <button type='button' onClick={addToFavoriteHandler}>Add to Favorites</button>}
             {!fromSearch && <button type='button' onClick={removeFavoriteHandler}>Remove from Favorites</button>}
