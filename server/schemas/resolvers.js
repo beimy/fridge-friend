@@ -86,20 +86,39 @@ const resolvers = {
       
             throw new AuthenticationError('You need to be logged in!');
           },
-          removeRecipe: async (parent, args, context) => {
+          removeRecipe: async (parent, { _id }, context) => {
+            
             if (context.user) {
-              const updatedUser = await User.findOneAndUpdate(
-                { _id: context.user._id },
-
-                { $pull: { favRecipes: { name: args.name } } },
-
-                { new: true }
-              );
-              console.log(updatedUser);
-              return updatedUser;
+                const user = context.user;
+                
+                try {
+                    const recipe = await Recipe.findById(_id);
+                    console.log(recipe);
+                    if (user.username === recipe.username) {
+                        console.log(recipe.username);
+                        await recipe.delete();
+                        return 'Favorite Recipe successfuly not a favorite any longer.';
+                    } else {
+                        throw new AuthenticationError('Action not allowed.')
+                    }
+                } catch(error) {
+                    throw new Error(error);
+                }
             }
-            throw new AuthenticationError("Please login in!");
           },
+          addComment: async (parent, { commentId, commentBody }, context) => {
+            if (context.user) {
+              const updatedRecipe = await Recipe.findOneAndUpdate(
+                { _id: commentId },
+                { $push: { comments: { commentBody, username: context.user.username } } },
+                { new: true, runValidators: true }
+              );
+          
+              return updatedRecipe;
+            }
+          
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 };
 
