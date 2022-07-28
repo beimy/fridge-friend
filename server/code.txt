@@ -1,3 +1,4 @@
+// This goes in Searchpage and favoritespage
 <div>
 // checks if the favRecipe id matches the recipe id and will render the first button if true
   {favRecipe._id === recipe._id ? (
@@ -8,4 +9,19 @@
 </div>;
 
 // assigns the key value to EACH li element so they all have a different key
+// goes in recipe.js in client
 <li key="ingredient">{ingredient.text}</li>
+
+function refreshPage() {
+    // this sets the reload to false which just refreshes from the cached version
+    window.location.reload(false);
+  }
+
+State method
+const [favRecipe, setRecipe] = useState([]);
+
+function addRecipe(e) {
+    const recipe = e.target.value;
+    console.log(recipe);
+    setRecipe([...favRecipe, recipe]);
+  }
