@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink }  from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
@@ -33,6 +33,10 @@ const client = new ApolloClient({
 function App() {
   const [favRecipe, setFavRecipe] = useState({title: '', uri : '' });
   const [usersFavRecipeList, setUsersFavRecipeList] = useState({favRecipes: []});
+
+  useEffect(() => {
+    document.title = 'Fridge Friend'
+  });
 
   return (
     <ApolloProvider client={client}>
